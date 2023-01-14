@@ -1,18 +1,20 @@
 {
   "name": "portfolio",
-  "homepage": "",
-  "version": "1.0.0",
+  "homepage": "https://philight.github.io/portfolio",
   "author": "Filip Lai",
   "description": "Personal portfolio of my works",
+  "version": "1.0.0",
   "license": "ISC",
   "main": "index.js",
   "scripts": {
     "start": "npx webpack serve --mode development --progress --port 7000",
     "start-dev": "next dev -p 7000",
     "start-next": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf public && webpack --mode development",
-    "build-win": "rd /s /q public && webpack --mode development"
+    "build-win": "rd /s /q public && webpack --mode development",
+    "build-win-raw": "webpack --mode development",
+    "predeploy": "npm run build-win",
+    "deploy": "gh-pages -d public"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
