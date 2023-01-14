@@ -1,0 +1,43 @@
+
+
+
+
+
+.contactme__container {
+    /margin-top: var(--page-padding-v);
+    margin-top: var(--section-gap);
+}
+
+
+.contactme__label {
+    color: #FFF;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.contactme__underline {
+	width: 100%;
+    height: 3.4px;
+    background-color: #FFF;
+    margin-top: 2px;
+    border-radius: 100px;
+}
+
+.contactme__button {
+	display: inline-flex;
+	align-items: center;
+	background-color: #FFF;
+    border-radius: 100px;
+    border: none;
+    padding: 10px 32px;
+
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--primaryblack);
+    margin-top: var(--page-padding-v);
+}
+
+.contactme__button-icon {
+	margin-left: 8px;
+}

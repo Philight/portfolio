@@ -1,0 +1,25 @@
+
+
+
+
+
+.skillstechnologies__container {
+	color: var(--primarygray);
+}
+
+.skillstechnologies__skills {
+	flex-wrap: wrap;
+	/margin-top: var(--page-padding-h);
+	margin-top: var(--page-padding-v);
+}
+
+.skillstechnologies__skill {
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 2px 12px;
+	margin-right: 14px;
+	margin-bottom: 6px;
+
+	border-radius: 50px;
+	border: 1px solid var(--black-2);
+}

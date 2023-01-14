@@ -1,0 +1,18 @@
+
+
+
+.heading__container {
+	color: var(--primarygray);
+	font-size: 12px;
+	font-weight: 500;
+	text-transform: uppercase;
+    margin-top: var(--section-gap);
+}
+
+.heading__divider {
+    width: 50px;
+    height: 0.67px;
+    background-color: var(--primarygray);
+    margin: 0px 16px;
+}
+

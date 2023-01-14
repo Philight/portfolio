@@ -1,0 +1,20 @@
+
+
+
+
+
+.aboutmetext_container {
+	color: var(--primarygray);
+
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 0px;
+	line-height: 1.2;
+
+	/margin-top: var(--page-padding-h);
+	margin-top: var(--page-padding-v);
+}
+
+.aboutmetext_container p {
+	margin-top: var(--page-padding-h);
+}

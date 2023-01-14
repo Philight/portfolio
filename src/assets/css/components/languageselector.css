@@ -1,0 +1,17 @@
+
+
+
+.languageselector__container {
+	margin-right: 8px;
+}
+
+.languageselector__language {
+    border-radius: 100px;
+    background-color: #C0C0C0;
+    padding: 8px;
+
+    font-size: 12px;
+    color: var(--primaryblack);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}

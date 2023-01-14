@@ -1,0 +1,35 @@
+
+
+
+.landing-page__container {
+    background-color: var(--primaryblack);
+    min-height: 200vh;
+}
+
+
+.landing-page__container .landing-page__section-intro {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--page-padding-v) - var(--nav-height));
+}
+
+.landing-page__container .headline__container {
+    //margin-top: calc(var(--page-padding-v) * 2);
+    margin-top: 10vh;
+}
+
+.landing-page__container .profile-photo {
+    max-height: 40vh;
+    //margin: auto 0;
+    margin-top: 5vh;
+}
+
+.landing-page__container .nextsection__container.about-me {
+    margin-top: auto;
+}
+/*
+.landing-page__container .heading__container.about-me {
+    margin-top: var(--page-padding-v);
+    margin-top: 10vh;
+}
+*/

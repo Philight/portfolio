@@ -1,0 +1,25 @@
+
+
+
+
+
+.typewriter__container {
+	position: relative;
+	color: #FFF;
+}
+
+.typewriter__character {
+	opacity: 0;
+}
+
+.typewriter__character.visible{
+	opacity: 1;
+}
+
+.typewriter__cursor {
+	position: absolute;
+	top: 0;
+	right:0;
+    height: 100%;
+    background-color: rgb(255 255 255 / 35%);
+}

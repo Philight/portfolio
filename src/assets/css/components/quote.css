@@ -1,0 +1,16 @@
+
+
+
+
+
+.quote__container {
+	color: var(--primarywhite);
+	color: #FFF;
+
+	font-size: 18px;
+	font-weight: 400;
+
+	/margin-top: var(--page-padding-h);
+	margin-top: var(--page-padding-v);
+}
+

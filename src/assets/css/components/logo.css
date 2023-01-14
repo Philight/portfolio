@@ -1,0 +1,14 @@
+
+
+
+.logo__container {
+	display: flex;
+	align-items: flex-end;
+}
+
+.logo__container h1 {
+	font-size: 18px;
+	font-weight: 500;
+    color: var(--primarygray);
+}
+

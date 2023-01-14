@@ -1,0 +1,8 @@
+# KEYS
+.env
+
+# FOLDERS
+/node_modules
+/public
+
+# FILES

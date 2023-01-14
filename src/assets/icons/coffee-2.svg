@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 60 60">
+  <g id="bottle-cafe-coffee-svgrepo-com" transform="translate(-2 -2)">
+    <g id="Group_3" data-name="Group 3">
+      <circle id="Ellipse_5" data-name="Ellipse 5" cx="30" cy="30" r="30" transform="translate(2 2)" fill="#fcce6b"/>
+    </g>
+    <g id="Group_10" data-name="Group 10">
+      <g id="Group_4" data-name="Group 4">
+        <path id="Path_1" data-name="Path 1" d="M39.9,50.6H24.1L21.7,21.5H42.3Z" fill="#54321f"/>
+      </g>
+      <g id="Group_5" data-name="Group 5">
+        <rect id="Rectangle_4" data-name="Rectangle 4" width="20.6" height="1.7" transform="translate(21.7 19.8)" fill="#a88771"/>
+      </g>
+      <g id="Group_6" data-name="Group 6">
+        <path id="Path_2" data-name="Path 2" d="M40.7,17.5,39,14.9H24.8l-1.7,2.6-1.4,2.3H42.3Z" fill="#d8d8d7"/>
+      </g>
+      <g id="Group_7" data-name="Group 7">
+        <path id="Path_3" data-name="Path 3" d="M40.4,43.9l1.5-17.6H22l1.5,17.6Z" fill="#a88771"/>
+      </g>
+      <g id="Group_8" data-name="Group 8" opacity="0.25">
+        <path id="Path_4" data-name="Path 4" d="M21.8,19.8,39.9,50.6l2.4-29.1V19.8Z" fill="#e8e7e7"/>
+      </g>
+      <g id="Group_9" data-name="Group 9">
+        <path id="Path_5" data-name="Path 5" d="M32,17a1.9,1.9,0,0,0,1.9-1.9v-.3H30.2v.3A1.76,1.76,0,0,0,32,17Z" fill="#442718"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,57 @@
+.footer__container {
+    border-top: 1px solid var(--black-2);
+    /margin-top: calc(2 * var(--page-padding-v));
+    margin-top: var(--section-gap);
+}
+
+.footer__authors {
+	margin-top: calc(2 * var(--page-padding-v));
+}
+
+.footer__author {
+	display: flex;
+    align-items: flex-start;
+
+    color: var(--primarygray);
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+	text-decoration: none;
+}
+
+.footer__author.designedby {
+    margin-top: 4px;
+    margin-left: 6px;
+}
+
+.footer__author-title {
+    font-size: 9px;
+    margin-top: 1.7px;
+    margin-right: 8px;
+}
+
+.footer__socials {
+	margin-top: var(--page-padding-v);
+}
+
+.footer__social {
+	margin: 0 calc(var(--page-padding-h) / 2);
+}
+
+.footer__bottom {
+	justify-content: space-between;
+	margin-top: calc(2 * var(--page-padding-v));
+}
+
+.footer__bottom-copyright {
+	/align-self: flex-end;
+    color: var(--primarygray);
+    font-size: 9px;
+    position: relative;
+}
+
+.footer__bottom-copyright__symbol {
+    font-size:7px;
+    margin-right: 1px;
+    transform: translateY(-1.2px);
+}
