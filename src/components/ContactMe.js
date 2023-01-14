@@ -12,8 +12,6 @@ import TypeWriter from "@components/animation/TypeWriter.js";
 
 import "../assets/css/components/contactme.css";
 
-//const LANGUAGES = ['en', 'sk', 'de'];
-
 const ContactMe = (props) => {
 	let { label, btnLabel, icon, className } = props;
 
