@@ -25,7 +25,7 @@ const ContactMe = (props) => {
 			contactme__container ${className} flex-col flex-center
 		`}>
 			<span className={`contactme__label flex-col flex-center`}>
-				<TypeWriter text={label} animationDuration={ANIM_DURATION} />
+				<TypeWriter text={label} animationDuration={ANIM_DURATION} refreshAnimation />
 				<canvas className={`contactme__underline`}/>
 			</span>
 

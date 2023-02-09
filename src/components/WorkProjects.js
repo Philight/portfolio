@@ -30,16 +30,16 @@ const WorkProjects = (props) => {
 
   useLayoutEffect(() => {
     if (projectRef.current) {
-console.log(`### WorkProjects Project dimensions`);
-console.log(projectRef.current.getBoundingClientRect());
+//console.log(`### WorkProjects Project dimensions`);
+//console.log(projectRef.current.getBoundingClientRect());
     	setProjectHeight(projectRef.current.getBoundingClientRect().height);
     }
   }, []);
 
   useLayoutEffect(() => {
     const onScroll = () => {
-console.log(`### WorkProjects scrolling.. Container elem:`);
-console.log(containerRef.current.getBoundingClientRect());
+//console.log(`### WorkProjects scrolling.. Container elem:`);
+//console.log(containerRef.current.getBoundingClientRect());
 
     	setContainerTop(containerRef.current.getBoundingClientRect().top);
     };
@@ -112,7 +112,7 @@ console.log(containerRef.current.getBoundingClientRect());
 
 				</div>
 
-				<a role="button" href="#" className={`workprojects__project-button flex-center-v`}>View Project</a>
+				<a role="button" className={`workprojects__project-button flex-center-v`}>View Project</a>
 				<Image source={data['imageSrc']} className={`workprojects__project-image`}/>
 				
 			</motion.div>

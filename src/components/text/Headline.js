@@ -14,7 +14,11 @@ const Headline = (props) => {
 
 	return (
 		<div className={`headline__container ${className}`}>
-			<h2><TypeWriter text={`Web Developer`} animationDuration={ANIM_DURATION} /><Dot left={6} bottom={5}/></h2>
+			<h2><TypeWriter text={`Web Developer`} animationDuration={ANIM_DURATION} />
+{/*
+			<Dot left={6} bottom={5}/>
+*/}
+			</h2>
 			<h2><TypeWriter text={`Web Designer`} animationDuration={ANIM_DURATION} /></h2>
 			<h2><TypeWriter text={`UI Designer`} animationDuration={ANIM_DURATION} /></h2>
 			<h2><TypeWriter text={`Technologist`} animationDuration={ANIM_DURATION} /></h2>

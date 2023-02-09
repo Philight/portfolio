@@ -2,6 +2,8 @@
 .nextsection__container {
 	--btn-color: var(--primarywhite);
 	margin: 3vh 0 2vh;
+
+    cursor: pointer;
 }
 
 .nextsection__button {

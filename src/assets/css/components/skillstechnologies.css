@@ -6,7 +6,11 @@
 .skillstechnologies__container {
 	color: var(--primarygray);
 }
-
+@media screen and (min-width: 1024px) {
+	.skillstechnologies__container {
+		flex-basis: 50%;
+	}
+}
 .skillstechnologies__skills {
 	flex-wrap: wrap;
 	/margin-top: var(--page-padding-h);

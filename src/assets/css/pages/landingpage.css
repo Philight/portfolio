@@ -33,3 +33,61 @@
     margin-top: 10vh;
 }
 */
+@media screen and (min-width: 1024px) {
+    .landing-page__container .landing-page__section-intro {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .landing-page__container .headline__container {
+        flex-basis: 50%;
+        margin-top: 18vh;
+            max-height: 80%;
+    }
+
+    .landing-page__container .profile-photo {
+        flex-basis: 50%;
+        max-height: initial;
+            max-height: 80%;
+    }
+
+    .landing-page__container .nextsection__container.about-me {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.landing-page__container .nextsection__container.my-work {
+    margin-top: var(--section-gap);
+}
+
+.landing-page__container .heading__container.my-work {
+    margin-top: calc(2 * var(--section-gap));
+}
+
+@media screen and (min-width: 1024px) {
+    .landing-page__container .nextsection__container.my-work {
+        margin: 40vh 0;
+    }
+
+    .landing-page__container .heading__container.my-work {
+        margin-top: calc(var(--section-gap) / 2);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .landing-page__container .landing-page__section {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .landing-page__container .landing-page__section.what-i-offer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}
+
+.contactme__container.lets-talk .icon__container {
+    transform: rotate(-90deg);
+}

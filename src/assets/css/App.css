@@ -5,6 +5,7 @@
   --black-1: #1D1D1D;
   --black-2: #404040;
   --gray-1: #C0C0C0;
+  --gray-2: #2A2A2A;
   --gray-overlay: #4a4a4a4d;
   --white-1: #F6F6F6;
 
@@ -36,6 +37,15 @@
   --section-gap: 10vh;
 
   --nav-height: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --page-padding-h: 40px;
+    --page-padding-v: 50px;
+
+    --section-gap: 20vh;
+  }
 
 }
 
@@ -47,9 +57,23 @@ body {
   width: 100%;
 }
 
-figure, h1, h2, h3, h4, p {
+figure, h1, h2, h3, h4, p, ul, li {
   margin: 0;
 }
+
+ul, li {
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+canvas {
+  width: 100px;
+  height: 100px;
+}
+
 
 img {
   width: 100%;

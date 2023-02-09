@@ -6,8 +6,14 @@
   "version": "1.0.0",
   "license": "ISC",
   "main": "index.js",
+  "config" : { 
+    "PORT" : "7002",
+    "BASENAME": "/portfolio",
+    "API_HOST": "https://philightapps.dev",
+    "API_PORT": "3333"
+  },
   "scripts": {
-    "start": "npx webpack serve --mode development --progress --port 7000",
+    "start": "ver && npx webpack serve --mode development --progress --port %npm_package_config_port% || npx webpack serve --mode development --progress --port $npm_package_config_port",
     "start-dev": "next dev -p 7000",
     "start-next": "next start",
     "build": "rm -rf public && webpack --mode development",

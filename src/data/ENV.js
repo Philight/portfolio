@@ -8,8 +8,8 @@ const getAppURL = () => {
 }
 
 export const VARIABLES = {
+	APP_URL: getAppURL(),
 	API_HOST: 'https://philightapps.dev',
 	API_PORT: 3333,
-	APP_URL: getAppURL(),
 	BASENAME: '/portfolio',
 }

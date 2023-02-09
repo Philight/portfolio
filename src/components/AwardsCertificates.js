@@ -5,16 +5,14 @@ import { Link } from "react-router-dom";
 
 import Icon from "@components/graphic/Icon.js";
 
+import { openLink } from "@utils/utilFunctions.js";
+
 import "@css/components/awardscertificates.css";
 
 const AwardsCertificates = (props) => {
 	let { awards, icon, iconColor, className } = props;
 
 	const [isMobile, setIsMobile] = useState(false);
-
-	const openLink = (URL) => {
-		window.open(URL, '_blank', 'noreferrer');
-	}
 
 	return (
 		<div className={`

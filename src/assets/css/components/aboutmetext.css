@@ -18,3 +18,13 @@
 .aboutmetext_container p {
 	margin-top: var(--page-padding-h);
 }
+
+@media screen and (min-width: 1024px) {
+	.aboutmetext_container {
+		flex-basis: 50%;
+	}
+
+	.aboutmetext_container p:first-child {
+		margin-top: 0;
+	}
+}

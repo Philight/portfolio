@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import { motion } from "framer-motion"
 
 import menuDouble from "@icons/menu-double.svg";
 import arrowDownRounded from "@icons/arrow-down-rounded.svg";
@@ -9,10 +10,11 @@ import coffee2 from "@icons/coffee-2.svg";
 import github from "@icons/github.svg";
 import linkedin from "@icons/linkedin.svg";
 import salesforce from "@icons/salesforce.svg";
+import xMark from "@icons/x-mark.svg";
 
 const Icon = forwardRef((props, ref) => {
 	let { icon, width, height, color,
-		className, onClick 
+		className, style, onClick 
 	} = props;
 
 	const iconName = icon.toLowerCase();
@@ -38,6 +40,8 @@ const Icon = forwardRef((props, ref) => {
 		      return menuDouble;	
 		    case 'salesforce':
 		      return salesforce;	
+		    case 'x-mark':
+		      return xMark;	
 
 		    case 'build':
 		      return 'https://ik.imagekit.io/0ovzivqyfai/kinokuke/icon/process/build.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1655761512997';
@@ -69,14 +73,14 @@ const Icon = forwardRef((props, ref) => {
 		};
 
 	return (
-		<figure className={`icon__container icon-${iconName} flex-center ${className}`} 
-			style={{ width: width||20, height: height||20 }}
+		<motion.figure className={`icon__container icon-${iconName} flex-center ${className}`} 
+			style={{ width: width||20, height: height||20, ...style }}
 			ref={ref} onClick={onClick}
 		>	
 			<img className="icon"
 				{...renderingStyle}
 			/>
-		</figure>
+		</motion.figure>
 	)
 })
 

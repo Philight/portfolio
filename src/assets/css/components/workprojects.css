@@ -6,6 +6,11 @@
 .workprojects__container {
 	--gap-m: 30px;
 }
+@media screen and (min-width: 1024px) {
+	.workprojects__container {
+		flex-basis: 100%;
+	}
+}
 
 .workprojects__project {
     box-sizing: border-box;
@@ -98,7 +103,6 @@
 
 .workprojects__project-image {
 
-	width: 100%; 
     /position: absolute;
     /left: 0;
     /bottom: 0;
@@ -108,6 +112,11 @@
     height: 40vh;
     overflow: hidden;
 	margin-top: 20px;
+}
+@media screen and (min-width: 1024px) {
+	.workprojects__project-image {
+		width: calc(100% + 2*20px);
+	}
 }
 
 .workprojects__project-image img {

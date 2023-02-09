@@ -5,6 +5,12 @@
 
 .awardscertificates__container {
 }
+@media screen and (min-width: 1024px) {
+	.awardscertificates__container {
+		flex-basis: 50%;
+		margin-left: 50%;
+	}
+}
 
 .awardscertificates__award {
 	/margin-top: var(--page-padding-h);
@@ -38,4 +44,6 @@
     margin-left: auto;
     transform: rotate(-90deg);
     padding: 4px;
+
+    cursor: pointer;
 }

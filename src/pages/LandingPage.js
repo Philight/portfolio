@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 
 import "../assets/css/pages/landingpage.css";
 
-import Navigation from "../components/layout/Navigation.js";
+import DataContext from '@contexts/DataContext.js';
+
+import Navigation from "@components/layout/Navigation.js";
 import Headline from "@components/text/Headline.js";
 import Image from "@components/graphic/Image.js";
 import NextSection from "@components/layout/NextSection.js";
@@ -21,6 +23,46 @@ import Footer from "@components/layout/Footer.js";
 import profilePhoto from "@images/Profile-BW-6.png";
 import xotixdesigns from "@images/xotixdesigns.png";
 import coffee1 from "@icons/coffee-1.svg";
+
+
+const SECTIONS = [
+	{
+		id: 'about-me',
+		numbering: '01',
+		label: 'About Me',
+		sectionRef: null
+	},
+	{
+		id: 'what-i-offer',
+		numbering: '02',
+		label: 'What I Offer',
+		sectionRef: null
+	},
+	{
+		id: 'my-work',
+		numbering: '03',
+		label: 'My Work',
+		sectionRef: null
+	},		
+	{
+		id: 'my-awards-certificates',
+		numbering: '04',
+		label: 'My Awards & Certificates',
+		sectionRef: null
+	},		
+	{
+		id: 'skills-technologies-i-use',
+		numbering: '05',
+		label: 'Skills & Technologies I Use',
+		sectionRef: null
+	},		
+	{
+		id: 'testimonials-about-my-work',
+		numbering: '06',
+		label: 'Testimonials About My Work',
+		sectionRef: null
+	},	
+]
 
 const SERVICES = [
 	{
@@ -113,41 +155,80 @@ const SKILLS = [
 const LandingPage = (props) => {
 	let { className, } = props;
 
+  	const contextData = useContext(DataContext);
+
+	const aboutMeSectionRef = useRef(null);
+	const whatIOfferSectionRef = useRef(null);
+	const myWorkSectionRef = useRef(null);
+	const myAwardsCertificatesSectionRef = useRef(null);
+	const skillsTechnologiesSectionRef = useRef(null);
+
+	useEffect(() => {
+//		if (aboutMeSectionRef.current) {
+console.log(`### About Me ref`);
+//console.log(aboutMeSectionRef.current);
+			let updatedSections = SECTIONS;
+			updatedSections[0]['sectionRef'] = aboutMeSectionRef.current;
+			updatedSections[1]['sectionRef'] = whatIOfferSectionRef.current;
+			updatedSections[2]['sectionRef'] = myWorkSectionRef.current;
+			updatedSections[3]['sectionRef'] = myAwardsCertificatesSectionRef.current;
+			updatedSections[4]['sectionRef'] = skillsTechnologiesSectionRef.current;
+      		contextData.setContextData(prevData => ({
+      			...prevData,
+      			SECTIONS: updatedSections
+      		}))
+//		}
+	}, [])
+
 	return (
 		<div className={`landing-page__container`}>
 			<section className={`landing-page__section-intro`}>
 				<Headline />
 				<Image source={profilePhoto} className={`profile-photo`} />
-				<NextSection label={`About Me`} className={`about-me`} />
+				<NextSection label={`About Me`} sectionRef={aboutMeSectionRef} className={`about-me`} />
 			</section>
 
-			<Heading numbering={`01`} label={`About Me`} className={`about-me`} />
-			<Quote label={`I love learning about new things and technologies. Learning is a lifelong process.`} />
-			<AboutMeText text={`I am a self-taught developer and designer, focusing both on front-end and back-end development, providing a full package solution for your needs.\nI have worked with a vast amount of technologies throughout my career, creating digital product, brand and e-commerce experiences\nI am fluent in English, Slovak, Vietnamese with a bit of German and love working in an international environment.`}/>
+			<section ref={aboutMeSectionRef} className={`landing-page__section about-me`}>
+				<Heading numbering={`01`} label={`About Me`} className={`about-me`} />
+{/*				
+				<Quote label={`I love learning about new things and technologies. Learning is a lifelong process.`} />
+*/}				
+				<Quote label={`I love learning about new things every day.`} />
+				<AboutMeText text={`I am a self-taught developer and designer, focusing both on front-end and back-end development, providing a full package solution for your needs.\nI have worked with a vast amount of technologies throughout my career, creating digital product, brand and e-commerce experiences\nI am fluent in English, Slovak, Vietnamese with a bit of German and love working in an international environment.`}/>
+			</section>
 	
-			<Heading numbering={`02`} label={`What I Offer`} className={`what-i-offer`} />
-			<Quote label={`I put special emphasis on close communication with the client to have a more deep understanding of the brand identity.`} />
-			<WhatIOfferServices services={SERVICES}/>
+			<section ref={whatIOfferSectionRef} className={`landing-page__section what-i-offer`}>
+				<Heading numbering={`02`} label={`What I Offer`} className={`what-i-offer`} />
+				<Quote label={`I put special emphasis on close communication with the client to have a more deep understanding of the brand identity.`} />
+				<WhatIOfferServices services={SERVICES}/>
+			</section>
 
 			<ContactMe label={`Interested?`} btnLabel={`Let's grab a coffee`} icon="coffee-1" />
+			<NextSection label={`Explore My Work`} sectionRef={myWorkSectionRef} className={`my-work`} />
 
-			<Heading numbering={`03`} label={`My Work`} className={`my-work`} />
-			<Quote label={`I love to craft functional solutions for unique problems.`} />
- 			<WorkProjects projects={PROJECTS} />
+			<section ref={myWorkSectionRef} className={`landing-page__section my-work`}>
+				<Heading numbering={`03`} label={`My Work`} className={`my-work`} />
+				<Quote label={`I love to craft functional solutions for unique problems.`} />
+	 			<WorkProjects projects={PROJECTS} />
+			</section>
 
-			<Heading numbering={`04`} label={`My Awards & Certificates`} className={`my-awards-certificates`} />
-			<AwardsCertificates awards={AWARDS} />
+			<section ref={myAwardsCertificatesSectionRef} className={`landing-page__section my-awards-certificates`}>
+				<Heading numbering={`04`} label={`My Awards & Certificates`} className={`my-awards-certificates`} />
+				<AwardsCertificates awards={AWARDS} />
+			</section>
 
-			<Heading numbering={`05`} label={`Skills & Technologies I Use`} className={`skills-technologies-i-use`} />
-			<Quote label={`I use a variety of different technologies for specific needs.`} />
-			<SkillsTechnologies skills={SKILLS} />
+			<section ref={skillsTechnologiesSectionRef} className={`landing-page__section skills-technologies-i-use`}>
+				<Heading numbering={`05`} label={`Skills & Technologies I Use`} className={`skills-technologies-i-use`} />
+				<Quote label={`I use a variety of different technologies for specific needs.`} />
+				<SkillsTechnologies skills={SKILLS} />
+			</section>
 
 
 {/*
-			<Heading numbering={`06`} label={`Testimonials About My Work`} className={`testimonials`} />
+			<Heading numbering={`06`} label={`Testimonials About My Work`} className={`testimonials-about-my-work`} />
 */}
 
-			<ContactMe label={`Have an idea in mind?`} btnLabel={`Let's talk`} icon="menu-double" />
+			<ContactMe className={`lets-talk`} label={`Have an idea in mind?`} btnLabel={`Let's talk`} icon="arrow-down-rounded" />
 
 			<Footer />
 		</div>

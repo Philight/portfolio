@@ -9,11 +9,21 @@
 	margin-top: var(--page-padding-v)
 }
 
+
 .whatiofferservices__service {
 	padding: var(--page-padding-h) 20px;
     background-color: var(--gray-overlay);
     border-radius: 10px;
 	margin-top: var(--page-padding-v)
+}
+
+@media screen and (min-width: 1024px) {
+	.whatiofferservices__container {
+		width: 50%;
+	}
+	.whatiofferservices__service:first-child {
+		margin-top: 0;
+	}
 }
 
 .whatiofferservices__service h4 {

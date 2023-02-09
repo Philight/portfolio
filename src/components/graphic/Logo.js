@@ -13,7 +13,10 @@ const Logo = forwardRef((props, ref) => {
 		<figure className={`logo__container ${className}`} 
 			ref={ref} onClick={onClick}
 		>
+{/*
 			<h1>FILIP LAI</h1>
+*/}
+			<h1>FL</h1>
 			<Dot size={6} left={2.4} bottom={2.4} />
 		</figure>
 	)

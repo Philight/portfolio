@@ -6,20 +6,25 @@ import { motion, useInView, useMotionValue, useTransform, animate } from "framer
 import "@css/components/typewriter.css";
 
 const TypeWriter = (props) => {
-	let { text, animationDuration, className } = props;
+	let { text, animationDuration, refreshAnimation, className } = props;
 
 	const containerRef = useRef(null);
+  	const [firstRun, setFirstRun] = useState(true);
+  	const [isRunning, setIsRunning] = useState(false);
 	const isInView = useInView(containerRef);
+  	const [containerWidth, setContainerWidth] = useState(0);
 
 	const charactersArray = text.split('');
 
   	const characterRef = useRef(null);
   	const [characterDimensions, setCharacterDimensions] = useState({width:0, height:0});
 
-  	const [currentCharacter, setCurrentCharacter] = useState(0);
+  	const [currentCharacter, setCurrentCharacter] = useState(-1);
   	const [charactersVisibility, setCharactersVisibility] = useState(
   		Array.from({ length: charactersArray.length }, (v, i) => 0)
   	);
+  	const [currentNewline, setCurrentNewline] = useState(-1);
+  	const [newlineIndexes, setNewlineIndexes] = useState([]);
 
 //console.log(`### TypeWriter | charactersVisibility:`);
 //console.log(charactersVisibility);
@@ -33,7 +38,15 @@ const TypeWriter = (props) => {
   		[0, 1]
   	);
 
+
+  	/* INITIAL USEEFFECT */
+
 	useLayoutEffect(() => {
+		if (containerRef.current) {
+//console.log(`### TypeWriter containerRef dimensions`);
+//console.log(containerRef.current.getBoundingClientRect());
+			setContainerWidth(containerRef.current.getBoundingClientRect().width);
+		}
 		if (characterRef.current) {
 //console.log(`### TypeWriter characterRef dimensions`);
 //console.log(characterRef.current.getBoundingClientRect());
@@ -45,13 +58,27 @@ const TypeWriter = (props) => {
 	}, []);
 
     useEffect(() => {
-console.log(`### TypeWriter | animation START`)
-		if (isInView) {
-			runAnimation(0);
-		} else {
-			resetAnimation();
+//console.log(`### TypeWriter | typing  animation START`)
+		
+		if ((firstRun || refreshAnimation) && !isRunning) {
+			if (isInView) {
+				runTypingAnimation(0);
+			} else {
+				resetTypingAnimation();
+			}
 		}
     }, [isInView])
+
+    useEffect(() => {
+//console.log(`### TypeWriter | useEffect containerWidth changed: ${containerWidth}`)
+		countNewlinePosition();
+    }, [containerWidth])
+
+    useEffect(() => {
+    	if (newlineIndexes.includes(currentCharacter)) {
+    		setCurrentNewline(newlineIndexes.indexOf(currentCharacter));
+    	} 
+    }, [currentCharacter])
 
     useEffect(() => {
 //  console.log(`### TypeWriter | animation cursor vis: ${cursorIsVisible ? 'T':'F'}`)
@@ -67,9 +94,43 @@ console.log(`### TypeWriter | animation START`)
     	return () => animation.stop();
     }, [cursorIsVisible])
 
-    const runAnimation = (currentIndex) => {
-console.log(`### TypeWriter | runAnimation()`)
+
+    const countNewlinePosition = () => {
+//console.log(`### TypeWriter | countNewlinePosition()`);
+//console.log(`### TypeWriter | characterDimensions.width.toFixed(3) ${characterDimensions.width.toFixed(3)}`);
+		const wordsArray = text.split(' ');
+//console.log(wordsArray)
+
+		let characterCount = 0;
+		let newlineIndexArr = [];
+		for (let i=0; i<wordsArray.length; i++) {
+			let charsInWord = wordsArray[i].length; // character count 
+
+			// Initial
+			if (characterCount==0) {
+				characterCount += charsInWord; 
+			// word is on next line
+			} else if ((characterCount + 1 + charsInWord) * characterDimensions.width.toFixed(3) > containerWidth) { // characters + space + new word
+//console.log(`### TypeWriter | countNewlinePosition() | word new line @: ${characterCount}`);
+				const addLastCount = newlineIndexArr.length ? newlineIndexArr[newlineIndexArr.length-1] : 0;
+				newlineIndexArr.push(characterCount+1+addLastCount);
+				characterCount = charsInWord; // start count with word on new line
+			// add to count
+			} else {
+				characterCount += 1 + charsInWord; // add space between
+//console.log(`### TypeWriter | countNewlinePosition() | add to count: chars ${characterCount}`);
+			}
+		}
+//console.log(`### TypeWriter | newlineIndexes`);
+//console.log(newlineIndexArr);
+
+		setNewlineIndexes(newlineIndexArr);
+    }
+
+    const runTypingAnimation = (currentIndex) => {
+//console.log(`### TypeWriter | runTypingAnimation()`)
 		if (currentIndex < charactersArray.length) {
+			setIsRunning(true);
 			setCurrentCharacter(currentIndex);
 			setCharactersVisibility(prevArray => {
 				prevArray[currentIndex] = 1;
@@ -77,20 +138,29 @@ console.log(`### TypeWriter | runAnimation()`)
 			});
 
 			setTimeout(() => {
-				runAnimation(currentIndex+1);
+				runTypingAnimation(currentIndex+1);
 			}, animationDuration)
+
+		} else {
+			setFirstRun(false);
+			setIsRunning(false);
 		}
     }
 
-    const resetAnimation = () => {
+    const resetTypingAnimation = () => {
     	setCharactersVisibility(Array.from({ length: charactersArray.length }, (v, i) => 0));
 	}
 
     useEffect(() => {
-console.log(`### TypeWriter | charactersVisibility`);
-console.log(charactersVisibility);
+//console.log(`### TypeWriter | charactersVisibility`);
+//console.log(charactersVisibility);
     }, [charactersVisibility])
 
+
+    const getLeftPos = () => {
+    	const offset = currentNewline != -1 ? newlineIndexes[currentNewline] : 0;
+    	return currentCharacter - offset +1;
+    }
 
 	return (
 		<span ref={containerRef} className={`typewriter__container ${className}`}>
@@ -107,7 +177,8 @@ console.log(charactersVisibility);
 					width: characterDimensions.width,
 					height: characterDimensions.height,
 					opacity: aOpacity,
-					left: (currentCharacter+1)*characterDimensions.width,
+					left: getLeftPos()*characterDimensions.width,
+					top: (currentNewline+1)*characterDimensions.height,
 				}} 
 			/>
 		</span>

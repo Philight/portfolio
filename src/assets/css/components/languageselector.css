@@ -3,6 +3,7 @@
 
 .languageselector__container {
 	margin-right: 8px;
+    z-index: 200;
 }
 
 .languageselector__language {

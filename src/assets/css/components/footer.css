@@ -1,7 +1,13 @@
 .footer__container {
-    border-top: 1px solid var(--black-2);
+    /border-top: 1px solid var(--black-2);
     /margin-top: calc(2 * var(--page-padding-v));
     margin-top: var(--section-gap);
+}
+
+.footer__border {
+    height: 1.2px;
+    width: 100%;
+    background-color: var(--black-2);
 }
 
 .footer__authors {
@@ -36,9 +42,11 @@
 
 .footer__social {
 	margin: 0 calc(var(--page-padding-h) / 2);
+    cursor: pointer;
 }
 
 .footer__bottom {
+    width: 100%;
 	justify-content: space-between;
 	margin-top: calc(2 * var(--page-padding-v));
 }

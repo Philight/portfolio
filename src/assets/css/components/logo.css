@@ -4,7 +4,9 @@
 .logo__container {
 	display: flex;
 	align-items: flex-end;
+	z-index: 200;
 }
+
 
 .logo__container h1 {
 	font-size: 18px;

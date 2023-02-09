@@ -1,9 +1,12 @@
 import React, { useLayoutEffect, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion"
 
 import Icon from "@components/graphic/Icon.js";
 import LanguageSelector from "@components/LanguageSelector.js";
 import TypeWriter from "@components/animation/TypeWriter.js";
+
+import { openLink } from "@utils/utilFunctions.js";
 
 import "@css/components/footer.css";
 
@@ -18,27 +21,50 @@ function usePrevious(value) {
 const Footer = (props) => {
 //	let { className, redirectUrl, socialFacebookUrl, socialInstagramUrl, title, subtitle, description, subdescription } = props;
 
-	const ANIM_DURATION = 120;
+	const ANIM_TYPING_DURATION = 120;
 
-	const [isMobile, setIsMobile] = useState(false);
 
-	const openLink = (URL) => {
-		window.open(URL, '_blank', 'noreferrer');
-	}
+	const containerRef = useRef(null);
+	const isInView = useInView(containerRef);
+
+	const mBorder = useMotionValue(0);
+	const aBorderWidth = useTransform(
+		mBorder, 
+		[0, 1], 
+		['0%', `100%`]
+	);
+
+  useEffect(() => {
+console.log(`### Footer | animation`)
+  	if (isInView) {
+    	animate(mBorder, 1, {
+				duration: 1.5,
+	    	ease: "easeIn",
+		    onUpdate(value) {
+	        //node1.textContent = value.toFixed(0)[value.toFixed(0).length-1];
+		    },
+	    	onComplete: () => {
+	      	
+	    	}
+	    });
+  	} 
+  }, [isInView])
 
 	return (
-		<footer className={`
-			footer__container
+		<footer ref={containerRef} className={`
+			footer__container flex-col flex-center-v
 		`}>
+			<motion.canvas className={`footer__border`} style={{width: aBorderWidth}}/>
+
 			<div className={`footer__authors flex-col flex-center`}>
 				<a rel="author" href="mailto:lai.filip@gmail.com" className={`footer__author developedby`}>
 					<span className={`footer__author-title`}>Developed By: </span>
-					<TypeWriter text={`Filip Lai.`} animationDuration={ANIM_DURATION} />
+					<TypeWriter text={`Filip Lai.`} animationDuration={ANIM_TYPING_DURATION} refreshAnimation />
 				
 				</a>
 				<a rel="author" href="mailto:lai.filip@gmail.com" className={`footer__author designedby`}>
 					<span className={`footer__author-title`}>Designed By: </span>
-					<TypeWriter text={`Filip Lai.`} animationDuration={ANIM_DURATION} />
+					<TypeWriter text={`Filip Lai.`} animationDuration={ANIM_TYPING_DURATION} refreshAnimation />
 				</a>
 			</div>
 

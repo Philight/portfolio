@@ -9,10 +9,43 @@
     margin-top: var(--section-gap);
 }
 
-.heading__divider {
+@media screen and (min-width: 1024px) {
+	.heading__container {
+		flex-basis: 100%;
+	}
+}
+
+.heading__numbering-container {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+}
+
+.heading__numbering-number {
+}
+
+.heading__numbering-placeholder {
+	position: absolute;
+	left: 0;
+	top:0;
+	z-index: 0;
+}
+.heading__numbering-placeholder.finished {
+	z-index: -2;
+}
+
+.heading__digit {
+
+}
+
+.heading__divider-container {
     width: 50px;
     height: 0.67px;
-    background-color: var(--primarygray);
     margin: 0px 16px;
 }
 
+.heading__divider {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primarygray);
+}
