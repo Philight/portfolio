@@ -1,0 +1,101 @@
+
+
+
+.calc-page__container {
+    background-color: #000000;
+
+    padding:10px;
+}
+
+.calc-page__table {
+    width: 700px;
+    color: #a28f0f;
+    border: 1px solid #FFF;
+}
+
+
+.calc-page__row {
+    width: 100%;
+    font-size: 12px;
+}
+
+.calc-page__row.heading {
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #FFF;
+}
+
+.calc-page__col {
+    flex: 0 0 calc(100% / 6);
+    border-right: 1px solid #FFF;
+
+    display: flex;
+    justify-content: center;
+}
+
+.calc-page__col.currency {
+    font-weight: 600;
+}
+
+
+.calc-page__form {
+    margin-top: 10px;
+}
+
+.calc-page__table.generated {
+    margin-top: 10px;
+}
+
+.calc-page__form input {
+        box-sizing: border-box;
+    width: 80px;
+    padding: 3px 4px;
+    text-align: center;
+    border-radius: 100px;
+    border: none;
+}
+
+.calc-page__form select {
+    box-sizing: border-box;
+    padding: 2px 2px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.calc-page__arrow {
+    margin: 10px 0 6px;
+    display: none;
+}
+
+.calc-page__arrow.visible {
+    display: initial;
+}
+
+.calc-page__arrow canvas {
+    background-color: #a28f0f;
+}
+
+.calc-page__arrow-tail {
+    transform: scaleY(1.1);
+}
+
+.calc-page__arrow-tail__line {
+    margin: 0 2px;
+    width: 2px;
+    height: 24px;
+    border-radius: 100px;
+}
+
+.calc-page__arrow-head__line {
+    width: 2.6px;
+    height: 20px;
+    border-radius: 100px;
+}
+
+.calc-page__arrow-head__line.left {
+    transform: rotate(-40deg) translateX(-6px) translateY(0px)
+}
+
+.calc-page__arrow-head__line.right {
+    transform: rotate(40deg) translateX(6px) translateY(0px)
+}

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import DataContext from '@contexts/DataContext.js';
 
+import CalcPage from "@pages/CalcPage.js";
 import LandingPage from "@pages/LandingPage.js";
 import LandingLayout from "@layouts/LandingLayout.js";
 import ScrollToTop from "@components/util/ScrollToTop.js";
@@ -38,6 +39,7 @@ const App = () => {
                <Routes>
                   {/*<RouteWrapper exact path="/" component={LandingPage} layout={LandingLayout} />*/}
                   <Route exact path="/" element={<LandingLayout><LandingPage /></LandingLayout>} />
+                  <Route path="/calculator" element={<LandingLayout><CalcPage /></LandingLayout>} />
 
       {/*
                   <Route exact path="/" render={(props) =>

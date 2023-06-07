@@ -120,7 +120,7 @@ button {
 .test-border-yellow { border: 1px solid yellow; }
 .test-border-orange { border: 1px solid orange; }
 
-.image__container {
+.image__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
