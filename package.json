@@ -6,8 +6,8 @@
   "version": "1.0.0",
   "license": "ISC",
   "main": "index.js",
-  "config" : { 
-    "PORT" : "7002",
+  "config": {
+    "PORT": "7002",
     "BASENAME": "/portfolio",
     "API_HOST": "https://philightapps.dev",
     "API_PORT": "3333"
@@ -16,10 +16,10 @@
     "start": "ver && npx webpack serve --mode development --progress --port %npm_package_config_port% || npx webpack serve --mode development --progress --port $npm_package_config_port",
     "start-dev": "next dev -p 7000",
     "start-next": "next start",
-    "build": "rm -rf public && webpack --mode development",
-    "build-win": "rd /s /q public && webpack --mode development",
+    "build": "rm -rf public && webpack --mode development && shx cp public/index.html public/404.html",
+    "build-win": "rd /s /q public && webpack --mode development && shx cp public/index.html public/404.html",
     "build-win-raw": "webpack --mode development",
-    "predeploy": "npm run build-win",
+    "predeploy": "npm run build || npm run build-win",
     "deploy": "gh-pages -d public"
   },
   "devDependencies": {
@@ -29,6 +29,7 @@
     "babel-loader": "^9.1.2",
     "gh-pages": "^4.0.0",
     "html-loader": "^4.2.0",
+    "shx": "^0.3.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
