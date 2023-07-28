@@ -9,9 +9,9 @@ const LandingLayout = ( {children} ) => {
 
 	return (
 		<div className={`
-			landinglayout__container page-padding 
+			landinglayout__container
 		`}>
-			<Navigation />
+			<Navigation className={``} />
 			{children}
 		</div>
 	)

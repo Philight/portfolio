@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useEffect, useState, useRef, forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useViewportScroll, useMotionValue, useTransform } from "framer-motion"
+import { motion, useScroll, useViewportScroll, useMotionValue, useTransform, cubicBezier } from "framer-motion"
 
 import Image from "@components/graphic/Image.js";
 
@@ -56,7 +56,6 @@ const WorkProjects = (props) => {
 	const Project = forwardRef(( props, ref ) => {
 		let { index, projectsContainerTop, data, className } = props;
 
-  	const testRef = useRef(null);
 		const { scrollYProgress } = useScroll({
 		  target: ref,
 //		  offset: ["start start", "end end"]
@@ -76,14 +75,16 @@ const WorkProjects = (props) => {
   	const scaleXYZ = useTransform(
   		containerY, 
   		[-(SCALEBASE+PROJECTHEIGHT*2/3), -(SCALEBASE+PROJECTHEIGHT/3)], 
-  		[0.7, 1]
+  		[0.7, 1],
+  		{ ease: cubicBezier(0.17, 0.67, 0.83, 0.67) }
   	);
 
   	const boxShadow = useTransform(
   		containerY, 
   		[-(SHADOWBASE+PROJECTHEIGHT), -(SHADOWBASE+PROJECTHEIGHT*1/3)], 
 //  		["0 -30px 30px 0 rgba(0, 0, 0, 0.3)", "0 0px 0px 0 rgba(0, 0, 0, 0.1)"]
-  		["0 -24px 24px 0 rgba(0, 0, 0, 0.24)", "0 0px 0px 0 rgba(0, 0, 0, 0.1)"]
+//  		["0 -24px 24px 0 rgba(0, 0, 0, 0.24)", "0 0px 0px 0 rgba(0, 0, 0, 0.1)"]
+  		["0 -48px 36px 0 rgba(0, 0, 0, 0.7)", "0 0px 0px 0 rgba(0, 0, 0, 0.1)"]
   	);
 
 		return (
@@ -94,25 +95,29 @@ const WorkProjects = (props) => {
 				}}
 			>
 
-				<div className={`workprojects__project-meta flex-col flex-center-v`}>
-					<span className={`workprojects__project-year`}>{data['year']}</span>
-					<span className={`workprojects__project-type`}>[ {data['type']} ]</span>
-				</div>
-
 				<div className={`workprojects__project-content flex-col`}>
-					<div className={`workprojects__project-features flex-center-v`}>
-						{data['features'].map(feature => (
-							<span className={`workprojects__project-feature`}>{feature}</span>
-						))}
+					<div className={`workprojects__project-meta flex-col flex-center-v`}>
+						<span className={`workprojects__project-year`}>{data['year']}</span>
+						<span className={`workprojects__project-type`}>[ {data['type']} ]</span>
 					</div>
 
-					<h3 className={`workprojects__project-title`}>{data['title']}</h3>
-					<h4 className={`workprojects__project-subtitle`}>{data['subtitle']}</h4>
-					<p className={`workprojects__project-description`}>{data['description']}</p>
+					<div className={`workprojects__project-inner-content flex-col`}>
+						<div className={`workprojects__project-features flex-center-v`}>
+							{data['features'].map(feature => (
+								<span className={`workprojects__project-feature`}>{feature}</span>
+							))}
+						</div>
 
+						<h3 className={`workprojects__project-title`}>{data['title']}</h3>
+						<h4 className={`workprojects__project-subtitle`}>{data['subtitle']}</h4>
+						<p className={`workprojects__project-description`}>{data['description']}</p>
+					</div>
+
+					<div className={`workprojects__project-button-wrapper`}>
+						<a role="button" className={`workprojects__project-button flex-center-v`}>View Project</a>
+					</div>
 				</div>
 
-				<a role="button" className={`workprojects__project-button flex-center-v`}>View Project</a>
 				<Image source={data['imageSrc']} className={`workprojects__project-image`}/>
 				
 			</motion.div>

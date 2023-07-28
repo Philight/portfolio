@@ -8,17 +8,17 @@ import Icon from "../graphic/Icon.js";
 import Logo from "../graphic/Logo.js";
 import LanguageSelector from "../LanguageSelector.js";
 
-import { openURL, usePrevious } from "@utils/utilFunctions.js";
+import useDeviceDimensions from "@utils";
+import { openLink, usePrevious } from "@utils/utilFunctions.js";
 
 import "@css/layouts/navigation.css";
 
 const Navigation = (props) => {
-//	let { className, redirectUrl, socialFacebookUrl, socialInstagramUrl, title, subtitle, description, subdescription } = props;
+	let { className } = props;
+  	const { DEVICE_WIDTH, DEVICE_HEIGHT } = useDeviceDimensions();
   	const contextData = useContext(DataContext);
-
   	const routeNavigate = useNavigate();
 
-		const [isMobile, setIsMobile] = useState(false);
     const [scrollOffset, setScrollOffset] = useState(0);
     const prevScrollOffset = usePrevious(scrollOffset);
 
@@ -27,6 +27,8 @@ const Navigation = (props) => {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [menuShown, setMenuShown] = useState(false);
+
+    const MAX_SCREEN_SIZE = DEVICE_WIDTH > DEVICE_HEIGHT ? DEVICE_WIDTH : DEVICE_HEIGHT;
 
   	const mMenu = useMotionValue(0);
   	const aRotateOpen = useTransform(
@@ -51,7 +53,7 @@ const Navigation = (props) => {
   	const aSubmenuCircle = useTransform(
   		mMenu, 
   		[0, 1], 
-  		[30, 2000]
+  		[30, MAX_SCREEN_SIZE*3]
   	);
 
   	const mMenuWrapper = useMotionValue(0);
@@ -100,9 +102,9 @@ const Navigation = (props) => {
 
 			  		// Start next Menu Wrapper animation
   					mMenuWrapper.set(0);
-			  		animate(mMenuWrapper, menuOpen? 1 : 0, {
-	      			duration: 0.7,
-	      			ease: "easeInOut",
+				  		animate(mMenuWrapper, menuOpen? 1 : 0, {
+		      			duration: 0.7,
+		      			ease: "easeInOut",
 			  		})
 			  	}
 	      }
@@ -111,11 +113,14 @@ const Navigation = (props) => {
     	return () => animation.stop();
     }, [menuOpen])
 
+/*
+	HIDE SCROLLBAR
+*/
   useEffect(() => {
   	if (menuOpen) {
-			document.body.style.overflow = 'hidden';
+		document.body.style.overflow = 'hidden';
   	}
-		return () => document.body.style.overflow = 'unset';
+	return () => document.body.style.overflow = 'unset';
   }, [menuOpen]);
 
   const navigateToInternal = (URL) => {
@@ -191,10 +196,10 @@ console.log(`### Navigation | navigateToSection()`)
 
 	return (
 		<nav className={`
-			navigation__container
+			navigation__container ${className}
 			
 		`}>
-			<div className={`navigation__wrapper ${fixedNav && 'fixed'} ${scrollDown&&'hidden'}`}>
+			<div className={`navigation__wrapper page-max-w ${fixedNav && 'fixed'} ${scrollDown&&'hidden'} `}>
 				<canvas className={`navigation__background`} />
 
 				<div className={`navigation__inner`}>
@@ -206,19 +211,18 @@ console.log(`### Navigation | navigateToSection()`)
 					<div className={`navigation__right flex-center-v`}>
 						<LanguageSelector />
 
-						<SubMenu />
-
 						<div className={`navigation__burger-menu flex-center`}>
 
 							<motion.canvas className={`navigation__burger-menu-circle`}
-							style={{ width: aSubmenuCircle, height: aSubmenuCircle, }} />
+								style={{ width: aSubmenuCircle, height: aSubmenuCircle, }} 
+							/>
 
 							<Icon 
 								className={`navigation__burger-menu-icon closed`}
 								icon="menu-double" 
 								color="var(--primarygray)"
-								width={22}
-								height={22}
+//								width={22}
+//								height={22}
 								style={{
 									rotateX: aRotateOpen, 
 									rotateY: aRotateOpen,
@@ -230,8 +234,8 @@ console.log(`### Navigation | navigateToSection()`)
 								className={`navigation__burger-menu-icon open`}
 								icon="x-mark" 
 								color="var(--primarygray)"
-								width={22}
-								height={22}
+//								width={22}
+//								height={22}
 								style={{
 									rotateX: aRotateClosed, 
 //									rotateY: aRotateClosed,
@@ -239,9 +243,12 @@ console.log(`### Navigation | navigateToSection()`)
 								}}
 								onClick={() => toggleMenu()}
 							/>
-						</div>
 
+						</div>
 					</div>
+
+					<SubMenu />
+
 				</div>
 
 			</div>

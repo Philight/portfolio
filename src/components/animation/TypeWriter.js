@@ -9,22 +9,25 @@ const TypeWriter = (props) => {
 	let { text, animationDuration, refreshAnimation, className } = props;
 
 	const containerRef = useRef(null);
-  	const [firstRun, setFirstRun] = useState(true);
-  	const [isRunning, setIsRunning] = useState(false);
 	const isInView = useInView(containerRef);
   	const [containerWidth, setContainerWidth] = useState(0);
+  	const [firstRun, setFirstRun] = useState(true);
+  	const [isRunning, setIsRunning] = useState(false);
 
 	const charactersArray = text.split('');
 
-  	const characterRef = useRef(null);
+//  	const characterRef = useRef(null);
+  	const charactersRefs = useRef([]);
   	const [characterDimensions, setCharacterDimensions] = useState({width:0, height:0});
 
   	const [currentCharacter, setCurrentCharacter] = useState(-1);
   	const [charactersVisibility, setCharactersVisibility] = useState(
   		Array.from({ length: charactersArray.length }, (v, i) => 0)
   	);
-  	const [currentNewline, setCurrentNewline] = useState(-1);
   	const [newlineIndexes, setNewlineIndexes] = useState([]);
+
+//  	const [currentNewline, setCurrentNewline] = useState(-1);
+  	const currentNewline = newlineIndexes[currentCharacter];
 
 //console.log(`### TypeWriter | charactersVisibility:`);
 //console.log(charactersVisibility);
@@ -47,12 +50,12 @@ const TypeWriter = (props) => {
 //console.log(containerRef.current.getBoundingClientRect());
 			setContainerWidth(containerRef.current.getBoundingClientRect().width);
 		}
-		if (characterRef.current) {
+		if (charactersRefs.current[0]) {
 //console.log(`### TypeWriter characterRef dimensions`);
 //console.log(characterRef.current.getBoundingClientRect());
 			setCharacterDimensions({
-				width: characterRef.current.getBoundingClientRect().width, 
-				height: characterRef.current.getBoundingClientRect().height
+				width: charactersRefs.current[0].getBoundingClientRect().width, 
+				height: charactersRefs.current[0].getBoundingClientRect().height
 			});
 		}
 	}, []);
@@ -72,13 +75,18 @@ const TypeWriter = (props) => {
     useEffect(() => {
 //console.log(`### TypeWriter | useEffect containerWidth changed: ${containerWidth}`)
 		countNewlinePosition();
-    }, [containerWidth])
+    }, [characterDimensions])
 
+/*
     useEffect(() => {
     	if (newlineIndexes.includes(currentCharacter)) {
     		setCurrentNewline(newlineIndexes.indexOf(currentCharacter));
     	} 
+
+		setCurrentNewline(newlineIndexes[currentCharacter]);
+
     }, [currentCharacter])
+*/
 
     useEffect(() => {
 //  console.log(`### TypeWriter | animation cursor vis: ${cursorIsVisible ? 'T':'F'}`)
@@ -94,7 +102,7 @@ const TypeWriter = (props) => {
     	return () => animation.stop();
     }, [cursorIsVisible])
 
-
+/*
     const countNewlinePosition = () => {
 //console.log(`### TypeWriter | countNewlinePosition()`);
 //console.log(`### TypeWriter | characterDimensions.width.toFixed(3) ${characterDimensions.width.toFixed(3)}`);
@@ -126,6 +134,18 @@ const TypeWriter = (props) => {
 
 		setNewlineIndexes(newlineIndexArr);
     }
+*/
+    const countNewlinePosition = () => {
+		let newlineIndexesArr = [];
+		for (const charRef of charactersRefs.current) {
+			const charHeight = Math.round(characterDimensions.height);
+//			const newlineIndex = charRef.offsetTop >= charHeight ? charRef.offsetTop / charHeight;
+			const newlineIndex = charRef.offsetTop / charHeight;
+			newlineIndexesArr.push(newlineIndex);
+		}
+		setNewlineIndexes(newlineIndexesArr);
+	}
+
 
     const runTypingAnimation = (currentIndex) => {
 //console.log(`### TypeWriter | runTypingAnimation()`)
@@ -158,16 +178,21 @@ const TypeWriter = (props) => {
 
 
     const getLeftPos = () => {
-    	const offset = currentNewline != -1 ? newlineIndexes[currentNewline] : 0;
-    	return currentCharacter - offset +1;
+//    	const offset = currentNewline != -1 ? newlineIndexes[currentNewline] : 0;
+//    	return currentCharacter +1;
+    	return charactersRefs.current[currentCharacter] ? charactersRefs.current[currentCharacter].offsetLeft + Math.round(characterDimensions.width) : 0;
     }
 
 	return (
-		<span ref={containerRef} className={`typewriter__container ${className}`}>
+		<span ref={containerRef} className={`typewriter__c ${className}`}>
 
-			{charactersArray.map( (character, index) => (
-				<span ref={characterRef} index={index} 
-					className={`typewriter__character ${charactersVisibility[index]? 'visible' :''}`}>
+			{charactersArray.map( (character, charIndex) => (
+				<span 
+					className={`typewriter__character ${charactersVisibility[charIndex]? 'visible' :''}`}
+//					ref={characterRef} 
+					ref={char => charactersRefs.current[charIndex] = char} 
+					index={charIndex} 
+				>
 					{character}
 				</span>
 			))}
@@ -177,8 +202,8 @@ const TypeWriter = (props) => {
 					width: characterDimensions.width,
 					height: characterDimensions.height,
 					opacity: aOpacity,
-					left: getLeftPos()*characterDimensions.width,
-					top: (currentNewline+1)*characterDimensions.height,
+					left: getLeftPos(),
+					top: (currentNewline)*Math.round(characterDimensions.height),
 				}} 
 			/>
 		</span>

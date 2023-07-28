@@ -1,21 +1,16 @@
 
 
-
-
-
-.typewriter__container {
+.typewriter__c {
 	position: relative;
 	color: #FFF;
 }
 
 .typewriter__character {
 	opacity: 0;
-	/display: none;
 }
 
 .typewriter__character.visible{
 	opacity: 1;
-	/display: inline;
 }
 
 .typewriter__cursor {

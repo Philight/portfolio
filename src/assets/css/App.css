@@ -32,8 +32,14 @@
 /*
   DEFAULT SETTINGS
 */
+  --page-max-width: 1200px;
+
+  --page-outer-h: 24px;
   --page-padding-h: 24px;
+
+  --page-outer-v: 40px;
   --page-padding-v: 40px;
+
   --section-gap: 10vh;
 
   --nav-height: 30px;
@@ -46,7 +52,18 @@
 
     --section-gap: 20vh;
   }
+}
 
+@media screen and (min-width: 1440px) {
+  :root {
+    --page-outer-h: 80px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -91,6 +108,13 @@ button {
   margin: auto;
 }
 
+.page-max-w {
+  max-width: var(--page-max-width);
+  padding-left: var(--page-outer-h);
+  padding-right: var(--page-outer-h);
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .flex-col {
   display: flex;
@@ -124,4 +148,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.icon__container {
+  width: 20px;
+  height: 20px;
 }

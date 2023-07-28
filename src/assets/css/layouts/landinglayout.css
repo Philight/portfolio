@@ -3,5 +3,6 @@
 
 .landinglayout__container {
     background-color: var(--primaryblack);
-
+    padding-top: calc(var(--page-outer-v) + var(--nav-height));
+    padding-bottom: var(--page-outer-v);
 }

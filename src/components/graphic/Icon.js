@@ -74,7 +74,7 @@ const Icon = forwardRef((props, ref) => {
 
 	return (
 		<motion.figure className={`icon__container icon-${iconName} flex-center ${className}`} 
-			style={{ width: width||20, height: height||20, ...style }}
+			style={{ width: width, height: height, ...style }}
 			ref={ref} onClick={onClick}
 		>	
 			<img className="icon"

@@ -13,13 +13,13 @@
     "API_PORT": "3333"
   },
   "scripts": {
-    "start": "ver && npx webpack serve --mode development --progress --port %npm_package_config_port% || npx webpack serve --mode development --progress --port $npm_package_config_port",
+    "start": "concurrently --raw --kill-others --passthrough-arguments \"npm run start:win || npm run start:linux\"",
+    "start:linux": "npx webpack serve --mode development --progress --port $npm_package_config_port",
+    "start:win": "ver && npx webpack serve --mode development --progress --port %npm_package_config_port%",
     "start-dev": "next dev -p 7000",
     "start-next": "next start",
-    "build": "rm -rf public && webpack --mode development && shx cp public/index.html public/404.html",
-    "build-win": "rd /s /q public && webpack --mode development && shx cp public/index.html public/404.html",
-    "build-win-raw": "webpack --mode development",
-    "predeploy": "npm run build || npm run build-win",
+    "build": "(rd /s /q public || rm -rf public) && webpack --mode development && shx cp public/index.html public/404.html",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d public"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^9.1.2",
+    "concurrently": "^8.2.0",
     "gh-pages": "^4.0.0",
     "html-loader": "^4.2.0",
     "shx": "^0.3.4",

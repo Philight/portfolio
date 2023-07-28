@@ -22,6 +22,7 @@ import Footer from "@components/layout/Footer.js";
 
 import profilePhoto from "@images/Profile-BW-6.png";
 import xotixdesigns from "@images/xotixdesigns.png";
+import versushd from "@images/versushd3.png";
 import coffee1 from "@icons/coffee-1.svg";
 
 
@@ -99,7 +100,8 @@ const PROJECTS = [
 		features: ['web design', 'storefront', 'branding' ],
 		description: `House of unconventional designs. Custom - made, fashionable skull bracelets store.`,
 		year: 2021,
-		imageSrc: 'https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/271448795_129720739519298_1203329097557700124_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=VIH39h35OMgAX9zJGLn&_nc_ht=scontent-lhr8-2.xx&oh=00_AfClrGMoplKZ6y24ltBKOub3y2_Uifi9AjOZAyUD7o3fxg&oe=63C1CAEA',
+		imageSrc: versushd,
+//		imageSrc: 'https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/271448795_129720739519298_1203329097557700124_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=VIH39h35OMgAX9zJGLn&_nc_ht=scontent-lhr8-2.xx&oh=00_AfClrGMoplKZ6y24ltBKOub3y2_Uifi9AjOZAyUD7o3fxg&oe=63C1CAEA',
 //		imageSrc: 'https://scontent-lhr8-1.xx.fbcdn.net/v/t39.30808-6/271261578_129341899557182_4193318366256447396_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=730e14&_nc_ohc=tqiLEAzXb6kAX9cprvQ&_nc_oc=AQmcRIhkEsRplJILolF5a3PxX7rxwOQmlgopobl5LHgxSuQpjB-B7iUFfBRyVQN9S2s&_nc_ht=scontent-lhr8-1.xx&oh=00_AfAkxnpLJJ23bDTq9GfZU6mRUIlPPCOWbAs9M1MxRBHlCg&oe=63C0E9AD',
 //		imageSrc: 'https://scontent-lhr8-2.xx.fbcdn.net/v/t39.30808-6/271523919_129721059519266_1023674588112582155_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=_mS_JbUtqlkAX_dAMU3&_nc_ht=scontent-lhr8-2.xx&oh=00_AfDXiUQTt2urdSt2tlhT9fg11TBi7tM9AV_ixsPBMq7BlA&oe=63C21B20',
 //		imageSrc: 'https://scontent-lhr8-1.xx.fbcdn.net/v/t39.30808-6/262878836_120601233764582_9002272290395223614_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-R-ZvbY7WhwAX8svydC&_nc_ht=scontent-lhr8-1.xx&oh=00_AfD6TgTmSe8ua6aQixCV_8gPx9lVWaHidlcQKzhdkf2r_A&oe=63C10219',
@@ -181,7 +183,7 @@ console.log(`### About Me ref`);
 	}, [])
 
 	return (
-		<div className={`landing-page__container`}>
+		<div className={`landing-page__container page-max-w`}>
 			<section className={`landing-page__section-intro`}>
 				<Headline />
 				<Image source={profilePhoto} className={`profile-photo`} />
