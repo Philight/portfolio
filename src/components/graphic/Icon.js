@@ -9,6 +9,7 @@ import coffee1 from "@icons/coffee-1.svg";
 import coffee2 from "@icons/coffee-2.svg";
 import github from "@icons/github.svg";
 import linkedin from "@icons/linkedin.svg";
+import meta from "@icons/meta.svg";
 import salesforce from "@icons/salesforce.svg";
 import xMark from "@icons/x-mark.svg";
 
@@ -36,6 +37,8 @@ const Icon = forwardRef((props, ref) => {
 		      return coffee2;  	 
   		    case 'linkedin':
 		      return linkedin;  			           
+  		    case 'meta':
+		      return meta; 
 		    case 'menu-double':
 		      return menuDouble;	
 		    case 'salesforce':

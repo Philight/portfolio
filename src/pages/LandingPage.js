@@ -20,7 +20,9 @@ import WorkProjects from "@components/WorkProjects.js";
 
 import Footer from "@components/layout/Footer.js";
 
-import profilePhoto from "@images/Profile-BW-6.png";
+//import profilePhoto from "@images/Profile-BW-6.png";
+import profilePhoto from "@images/Long_Profile--orig--BW.png";
+
 import xotixdesigns from "@images/xotixdesigns.png";
 import versushd from "@images/versushd3.png";
 import coffee1 from "@icons/coffee-1.svg";
@@ -125,6 +127,13 @@ const AWARDS = [
 		iconColor: '#00a1e0',
 		link: 'https://focusonforce.com/salesforce-certifications/platform-app-builder/',
 	},
+	{ 
+		title: 'Meta Front-End Developer Professional',
+		subtitle: 'Meta',
+		icon: 'meta',
+		iconColor: '#0081FB',
+		link: 'https://coursera.org/verify/P2NEPK6NENNK',
+	},
 ];
 
 const SKILLS = [
@@ -135,22 +144,37 @@ const SKILLS = [
 		label: 'CSS',
 	},
 	{ 
+		label: 'TailwindCSS',
+	},	
+	{ 
+		label: 'jQuery',
+	},	
+	{ 
 		label: 'Javascript',
 	},
+	{ 
+		label: 'Typescript',
+	},	
 	{ 
 		label: 'React.js',
 	},
 	{ 
+		label: 'Next.js',
+	},	
+	{ 
 		label: 'Node.js',
 	},
+	{ 
+		label: 'Express.js',
+	},	
 	{ 
 		label: 'SQL',
 	},
 	{ 
-		label: 'Liquid',
-	},
+		label: 'Shopify',
+	},	
 	{ 
-		label: 'jQuery',
+		label: 'Liquid',
 	},
 ];
 
